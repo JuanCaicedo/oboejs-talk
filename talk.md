@@ -1,50 +1,46 @@
 # What are we going to learn
-We're going to talk about the challenges of having web apps that need lots of data
+Hi everyone! Thank you all for coming. We're going to talk about the challenges of writing web applications that require big amounts of data. We're particularly going to focus on the tradeoff we often have to make between UX and performance.
 
-particularly in the tradeoff between UX and performance.
+We're going to cover the basics of Unix streams and why they are so beneficial in the back end.
 
-We're going to talk about how the streaming approach to data transfer gives us huge benefits
+And then we're going to talk about how bringing that streaming philosophy into web applications gives us huge benefits and how Oboe.js let us do that in a simple fully-javascript approach.
 
-and how Oboe.js lets us apply that easily in javascript.
+# Who am I, and why you should listen to me
+My name is Juan Caicedo and you probably shouldn't. Just a short year ago, I was a java developer, but I fell in love with Node at last year's NodeSchool workshop at NationJS. Now I work as a full-stack dev at Fluencia in Rosslyn, where we make the biggest and best Spanish-English online dictionary, SpanishDict.com.
 
 # Server load
-As web apps become more and more powerful, they start to need more and more data to be loaded
+Now let's get back to our problem. As web apps become more and more powerful, they start to need more and more data to be loaded into them.
 
-???.
+This poses a big challenge to developers, because getting lots of data to the front end is hard. It's not usually a great idea to wait for this huge amount of data to be loaded in the server and before you send an HTML response because users are not patient. Amazon did a study where they added 100ms of load time, and they lost 1% of sales. To put that in context, that's a fourth of the time it takes you blink your eyes, and it equates to millions in loss of revenue for a company like Amazon.
 
-This poses a big challenge to developers. It's not always a great idea to load all of the data in the server and send an HTML response with all of it already in there because users don't want to wait a millisecond more than they have to.
-
-This is why we use AJAX, so that we can load a for the user as quickly as possible to improve the perception of performance, and then go out and then go out and fetch the data.
+This is why AJAX became such a big thing, because you can instead give minimal page back to the user as fast as possible and then make an asynchronous request to get that data and then give it back to the user when it's ready giving them the perception of improved performance.
 
 # Big AJAX
-But just moving the operation to the client side doesn't make the operation any faster.
+However, moving that operation of getting data to the client-side doesn't make it any fast. In fact, it probably makes it slower, because odds are you're now doing it from a much less powerful device, like a dinky android device on 2g instead of your beefy AWS server.
 
-If you have to load a piece of data that's say quite a few megabytes, having the user wait until all that data is in memory is still going to make for a bad user experience,
-
-even if they get to look at a spinning loading icon while they're waiting.
 
 # Small AJAX
 
-The solution could then be to execute many small AJAX requests and progressively make their results available to the user.
+The solution could then be to break that up, so that instead of doing one big AJAX request, you do a lot of small AJAX requests, and each time one of them finishes, you take that data and give it to the user. This is what's known as incremental loading, and it does improve UX!
 
-This improves UX, but it results in a much more network intensive app, since going back and forth over a network is an expensive operation.
+The thing is that the biggest bottleneck when it comes to web performance is latency, or how long it takes to go from the client side, to the server, and then make it back to the client side. Now you're multiplying the cost of that latency times the number of requests you want to make, which gets very expensive very quickly.
 
-It also requires more complex server-side code since instead of hitting an endpoint once, you have to hit an enpoint multiple times with a way of retrieving data with offsets.
+It also requires more complex server-side code since now instead of hitting an endpoint once, you have to hit an endpoint multiple times and have logic for offsetting which data you're requesting and a way of aggregating it on the client.
 
 # OBOE
-Oboe.js lets you completely sidestep these complications
+This is where Oboe.js comes to the rescue, letting us completely sidestep these complications.
 
-by parsing an http response and letting you interact with data points as soon as they are available.
+Oboe is a library that gives you one function, the oboe function. The oboe function takes a url and makes a request to it. It then goes through and parses that response as coming in to the browser, but it lets you interact with the response before the parsing is all done. It's basically a SAX parser for JSON and the web, letting you attach event listeners when different parts of the response are ready, and then letting you use that data while it continues parsing.
 
-The whole library only exports a single function, oboe, which takes a URL that it makes a request to.
+Attaching a listener is also extremely simple. All you do is call a function called node, which takes a pattern to recognize what part of the json to look for, and then a function to call once it matches that pattern.
 
-The pattern syntax they offer is incredibly powerful while being extremely simple.
+The pattern syntax is incredibly powerful while being really concise. The simplest form is to simply specify property you want to listen for. Here your callback will fire when oboe finds loads a property called person. You can even listen further down and get an event when a name property is found inside of the person property.
 
-The most common way to use it is to specify where in the tree you're going to find the data you want and then fire your listener each time it goes off.
+If you know that the property is going to be an array, then you can specify the property name with an array syntax. Now the callback will fire for each object inside of that array instead of just once when the whole array has loaded.
 
-An even more powerful way to do it is to just specify what the object that you're looking for is going to look like.
+You can also combine these two, by specifying an array, then a property inside each of its objects. Here, oboe is going to fire the callback it find the name property for each object inside the people array.
 
-You can then register event listeners that will fire when different parts of that response are availabe.
+My favorite way to use oboe is to use duck typing. You can tell it to look for any object that has certain properties. Here, if it has feathers, it has wings, and it has quacksLikeADuck, then it's a duck, and you're going to fire the duck callback.
 
 # On the Fly OOP
 
