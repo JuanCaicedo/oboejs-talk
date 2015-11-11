@@ -211,8 +211,6 @@ body {
  *********************************************/
 .reveal section img {
   margin: 15px 0px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 4px solid #93a1a1;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
 
 .reveal a img {
@@ -221,7 +219,6 @@ body {
   transition: all 0.15s linear; }
 
 .reveal a:hover img {
-  background: rgba(255, 255, 255, 0.2);
   border-color: #268bd2;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
