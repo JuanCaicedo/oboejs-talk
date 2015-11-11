@@ -63,9 +63,16 @@ A reaIf you happen to think that's too much work though, here is a really cool f
 
 Therefore Oboe can give you benefits when applied to any REST end point.
 
+# In the shell
+I find myself using oboe a lot in the shell. In the shell you have to pipe data from one program into another, which means that the data flows out of one program as a standardout sream and into another as a standardin stream. Node is great at working with these as it can access them directly. You can run one command and then pipe it into a node script. Normally you would then have to wait for that stream to finish, parse the result, and then select and use the data you want.
+
+With oboe, you can instead change this around, and use exactly the data you need, without having to call JSON.parse and without having to wait until the end.
+
 # Demo
 
-Now everyone likes to see things in action, so I've but together a demo so we can see it. I came up with this idea seeing a talk by Jenn Schiffer at JSConf in Colombia. She has this application called make8bitart, which you can use to draw 8 bit art. Of course, no programming presentation is complete unless it has something having to do with cats, so I used make 8 bit art to make this.
+Now everyone likes to see things in action, so I've but together a demo so we can see it.
+
+I came up with this idea seeing a talk by Jenn Schiffer at JSConf in Colombia. She has this application called make8bitart, which you can use to draw 8 bit art. Of course, no programming presentation is complete unless it has something having to do with cats, so I used make 8 bit art to make this.
 
 That in itself is cool, but what's even cooler is that then you can export those images to a JSON format. So I can get that picture of a cat into a file. I'm going to dig in and show you a bit of what it looks like. If you've never seen jq before, it's a command line utility for working with JSON, it's way nice. Here I'm filtering what I show you, because the file wasn't quite big enough. I wanted a much fatter file, so I went through and added 30 useless properties to every object in the pixels array.
 
