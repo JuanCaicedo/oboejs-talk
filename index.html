@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -51,85 +51,91 @@
         </section>
 
         <section>
+          <h2>Who am I</h2>
+        </section>
+
+        <section>
           <h2>Big JSON is hard</h2>
           <p class="fragment fade-in">Slow page load?</p>
-          <p class="fragment fade-in"> One big AJAX?</p>
+          <p class="fragment fade-in">One big AJAX?</p>
           <p class="fragment fade-in">Many small AJAX?</p>
         </section>
 
         <section>
-          <section>
-              <code class="bash" data-trim>
-npm install oboe
-              </code>
-          </section>
+          <div id="oboe-title-div">
+            <img id="oboe-logo" style="width:150px" src="images/oboejs.png"></img>
+            <h1 id="oboe-title-header">Oboe.js</h1>
+          </div>
+        </section>
+        <section>
           <section>
             <h3>It's this simple</h3>
             <pre >
-              <code class="javascript" data-trim >
-oboe('url')
-  .node('pattern', function(data){
-    // handler code
-  });
+              <code class="javascript" data-trim contenteditable>
               </code>
             </pre>
           </section>
           <section>
-            <h3>Interact on the fly!</h3>
-          </section>
-          <section>
-            <h3>Object Oriented?</h3>
-            <pre class="fragment">
-              <code class="javascript" data-trim>
+            <h3 class="">Interact on the fly!</h3>
+            <div id="oop-container" class="fragment fade-in" data-fragment-index="1">
+              <div class="fragment fade-out" data-fragment-index="3">
+                <h3>Object Oriented?</h3>
+                <pre class="fragment fade-in" data-fragment-index="2">
+                  <code class="javascript" data-trim>
 oboe('/myapp/people')
   .node('people.*', function(person){
-    return new Person(person.firstName, person.lastName)
+    return new Person(
+      person.firstName,
+      person.lastName
+    );
   })
   .done(function(people){
     // OOP people!
   })
-              </code>
-            </pre>
-          </section>
-          <section>
-            <h3>Filtering</h3>
-            <pre class="fragment">
-              <code class="javascript" data-trim>
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <div id="filtering-container" class="fragment fade-in" data-fragment-index="4">
+              <div class="fragment fade-out" data-fragment-index="6">
+                <h3>Filtering?</h3>
+                  <pre class="fragment" data-fragment-index="5">
+                    <code class="javascript" data-trim contenteditable>
 var onlyPeople = [];
 
 oboe('/myapp/people')
   .node('people.*', function(person){
-
-    if(person.name !== 'Duke'){
+    if(person.name !== 'Roger Rabbit'){
       onlyPeople.push(person);
     }
-
   })
-
   .done(function(){
-    console.log(onlyPeople) // no Duke :(
+    console.log(onlyPeople) // no R.R :(
   })
-              </code>
-            </pre>
-          </section>
-          <section>
-            <h3>Memory efficient</h3>
-            <pre class="fragment"><code class="javascript" data-trim>
+                    </code>
+                  </pre>
+              </div>
+            </div>
+            <div id="memory-container" class="fragment fade-in" data-fragment-index="7">
+              <div class="fragment fade-out" data-fragment-index="9">
+                <h3>Memory?</h3>
+                  <pre class="fragment" data-fragment-index="8">
+                    <code class="javascript" data-trim contenteditable>
 oboe('/myapp/people')
   .node('{ firstName lastName }', function(person){
-
     // write to the DOM
-
     return oboe.drop;
   })
-
   .done(function( finalJson){
     console.log(finalJson); // {"people": []}
   })
-            </code></pre>
+                    </code>
+                  </pre>
+              </div>
+            </div>
           </section>
           <section>
-            <h3>Fail gracefully!</h3>
+            <h3>Let's you fail gracefully!</h3>
           </section>
         </section>
         <section>
@@ -138,9 +144,7 @@ oboe('/myapp/people')
             <pre class="fragment">
               <code class="javascript" data-trim>
 router.get('/data', function(req, res) {
-
   var readStream = fetchYourData();
-
   readStream.pipe(res)
 });
               </code>
@@ -149,24 +153,34 @@ router.get('/data', function(req, res) {
           </section>
           <section>
             <h3>In the shell</h3>
-              <pre class="fragment">
-                <code class="bash" data-trim>
-$ cat pipelines.json | node rerun-pipelines.js
+              <pre id="bash-command" class="fragment">
+                <code class="bash" data-trim contenteditable>
+$ aws datapipeline list-pipelines | node rerun-pipelines.js
               </code>
             </pre>
             <div class="fragment">
-              <h3>In the node</h3>
+              <h3>In a node script</h3>
               <pre>
-                <code class="javascript">
+                <code class="javascript" data-trim contenteditable>
 oboe(process.stdin)
-
-  .done(function(pipelines){
-
+  .node('pipelines.[]', function(pipelines){
     pipelines.forEach(rerun)
   })
                 </code>
               </pre>
             </div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Demo!</h2>
+          </section>
+          <section>
+            <h3>Data from</h3>
+            <a href="http://make8bitart.com/">http://make8bitart.com/</a>
+          </section>
+          <section>
+            <img id="cat-image" src="images/cat.png"></img>
           </section>
         </section>
         <section>

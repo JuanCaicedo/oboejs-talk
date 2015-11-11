@@ -33,3 +33,48 @@ $mainFontSize: 30px;
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
+
+#oboe-title-header {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#oboe-title-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#oboe-logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#filtering-container {
+  -webkit-transform: translateY(-78%);
+  /* for Safari and iOS */
+  -ms-transform: translateY(-78%);
+  /* for IE9 */
+  transform: translateY(-78%);
+}
+
+#memory-container {
+  -webkit-transform: translateY(-224%);
+  /* for Safari and iOS */
+  -ms-transform: translateY(-224%);
+  /* for IE9 */
+  transform: translateY(-224%);
+}
+
+#bash-command {
+  font-size: 0.75em;
+}
+
+#cat-image {
+  -webkit-transform: translatex(23%);
+  /* for Safari and iOS */
+  -ms-transform: translatex(23%);
+  /* for IE9 */
+  transform: translatex(23%);
+}

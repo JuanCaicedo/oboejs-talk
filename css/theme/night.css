@@ -126,7 +126,7 @@ body {
   width: 90%;
   margin: 20px auto;
   text-align: left;
-  font-size: 0.55em;
+  font-size: 1em;
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
@@ -137,7 +137,7 @@ body {
 
 .reveal pre code {
   display: block;
-  padding: 5px;
+  padding: 15px;
   overflow: auto;
   max-height: 400px;
   word-wrap: normal;
@@ -260,3 +260,41 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: #e7ad52; }
+
+#oboe-title-header {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto; }
+
+#oboe-title-text {
+  display: inline-block;
+  vertical-align: middle; }
+
+#oboe-logo {
+  display: inline-block;
+  vertical-align: middle; }
+
+#filtering-container {
+  -webkit-transform: translateY(-78%);
+  /* for Safari and iOS */
+  -ms-transform: translateY(-78%);
+  /* for IE9 */
+  transform: translateY(-78%); }
+
+#memory-container {
+  -webkit-transform: translateY(-224%);
+  /* for Safari and iOS */
+  -ms-transform: translateY(-224%);
+  /* for IE9 */
+  transform: translateY(-224%); }
+
+#bash-command {
+  font-size: 0.75em; }
+
+#cat-image {
+  -webkit-transform: translatex(23%);
+  /* for Safari and iOS */
+  -ms-transform: translatex(23%);
+  /* for IE9 */
+  transform: translatex(23%); }
