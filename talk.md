@@ -1,7 +1,7 @@
 # What are we going to learn
 Hi everyone! Thank you all for coming. We're going to talk about the challenges of writing web applications that require big amounts of data. We're particularly going to focus on the tradeoff we often have to make between UX and performance.
 
-Then we're going to talk about how and adopting an event-drivenß approach and viewing our data as a stream gives us huge benefits in our web applications and how Oboe.js let us do that in a simple fully-javascript approach.
+Then we're going to talk about how and adopting an event-driven approach and viewing our data as a stream gives us huge benefits in our web applications and how Oboe.js let us do that in a simple fully-javascript approach.
 
 # Who am I, and why you should listen to me
 My name is Juan Caicedo and you probably shouldn't. Just a short year ago, I was a java developer, but I fell in love with Node at last year's NodeSchool workshop at NationJS. Now I work as a full-stack dev at Fluencia in Rosslyn, where we make the biggest and best Spanish-English online dictionary, SpanishDict.com.
@@ -94,3 +94,5 @@ Oboe is on Github and if you have any questions or problems, I check in on the i
 
 # Questions
 I've posted up here a bunch of resources relating to this talk, including these slides. That's all I have for you tonight, but I'd love to answer any questions if you have them.
+
+cat points.json | jq '.pxif.pixels | map({x:.x, y:.y, color:.color})'  | less
