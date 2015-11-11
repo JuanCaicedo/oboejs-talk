@@ -76,12 +76,12 @@
             </pre>
           </section>
           <section>
-            <h3 class="">Interact on the fly!</h3>
+            <h3>Interact on the fly!</h3>
             <div id="oop-container" class="fragment fade-in" data-fragment-index="1">
               <div class="fragment fade-out" data-fragment-index="3">
                 <h3>Object Oriented?</h3>
                 <pre class="fragment fade-in" data-fragment-index="2">
-                  <code class="javascript" data-trim>
+                  <code class="javascript" data-trim contenteditable>
 oboe('/myapp/people')
   .node('people.*', function(person){
     return new Person(
@@ -142,7 +142,7 @@ oboe('/myapp/people')
           <section>
             <h3>On the server</h3>
             <pre class="fragment">
-              <code class="javascript" data-trim>
+              <code class="javascript" data-trim contenteditable>
 router.get('/data', function(req, res) {
   var readStream = fetchYourData();
   readStream.pipe(res)
@@ -193,11 +193,18 @@ oboe(process.stdin)
           </section>
           <section>
             <h3>What's bad?</h3>
-            <p class="fragment">...</p>
+            <p class="fragment">Maybe overkill for small data?</p>
           </section>
         </section>
         <section>
-          <h3>Questions?</h3>
+          <h3>Resources</h3>
+          <ul>
+            <li>Oboe.js on github: </li>
+            <li>Oboe.js docs: </li>
+            <li>These slides: </li>
+            <li>My Demo: </li>
+            <li>Tweet me questions: </li>
+          </ul>
         </section>
       </div>
 

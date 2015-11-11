@@ -276,18 +276,18 @@ body {
   vertical-align: middle; }
 
 #filtering-container {
-  -webkit-transform: translateY(-78%);
+  -webkit-transform: translateY(-97%);
   /* for Safari and iOS */
-  -ms-transform: translateY(-78%);
+  -ms-transform: translateY(-97%);
   /* for IE9 */
-  transform: translateY(-78%); }
+  transform: translateY(-97%); }
 
 #memory-container {
-  -webkit-transform: translateY(-224%);
+  -webkit-transform: translateY(-243%);
   /* for Safari and iOS */
-  -ms-transform: translateY(-224%);
+  -ms-transform: translateY(-243%);
   /* for IE9 */
-  transform: translateY(-224%); }
+  transform: translateY(-243%); }
 
 #bash-command {
   font-size: 0.75em; }
