@@ -104,6 +104,7 @@
             <h3>Object Oriented?</h3>
             <pre class="fragment fade-in">
               <code class="javascript" data-trim contenteditable>
+// new Person(firstName, lastName)
 oboe('/myapp/people')
   .node('people.*', function(person){
     return new Person(
@@ -112,7 +113,7 @@ oboe('/myapp/people')
     );
   })
   .done(function(people){
-    // OOP people!
+    people[0].sayName();
   })
               </code>
             </pre>
@@ -121,16 +122,16 @@ oboe('/myapp/people')
             <h3>Filtering?</h3>
             <pre class="fragment fade-in">
               <code class="javascript" data-trim contenteditable>
-var onlyPeople = [];
+var greenPeople = [];
+var bluePeople  = [];
 
 oboe('/myapp/people')
   .node('people.*', function(person){
-    if(person.name !== 'Roger Rabbit'){
-      onlyPeople.push(person);
+    if(person.color === 'blue'){
+      bluePeople.push(person);
+    } else {
+      greenPeople.push(person);
     }
-  })
-  .done(function(){
-    console.log(onlyPeople) // no R.R :(
   })
               </code>
             </pre>
@@ -141,11 +142,12 @@ oboe('/myapp/people')
               <code class="javascript" data-trim contenteditable>
 oboe('/myapp/people')
   .node('{ firstName lastName }', function(person){
-    // write to the DOM
-    return oboe.drop;
+    if(person.color === 'blue'){
+      return this.drop;
+    }
   })
   .done(function( finalJson){
-    console.log(finalJson); // {"people": []}
+    console.log(finalJson); // {"people": [ , , greenPerson, ]}
   })
               </code>
             </pre>
@@ -159,7 +161,7 @@ oboe('/myapp/people')
               <code class="javascript" data-trim contenteditable>
 router.get('/data', function(req, res) {
   var readStream = fetchYourData();
-  readStream.pipe(res)
+  readStream.pipe(res);
 });
               </code>
             </pre>
@@ -177,8 +179,8 @@ $ aws datapipeline list-pipelines | node rerun-pipelines.js
               <pre>
                 <code class="javascript" data-trim contenteditable>
 oboe(process.stdin)
-  .node('pipelines.[]', function(pipelines){
-    pipelines.forEach(rerun)
+  .node('pipelines.[]', function(pipeline){
+    rerun(pipeline);
   })
                 </code>
               </pre>
