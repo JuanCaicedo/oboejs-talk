@@ -94,6 +94,10 @@
             <h3>It's this simple</h3>
             <pre >
               <code class="javascript" data-trim contenteditable>
+oboe('url')
+  .node('pattern', function(data){
+    // listener code
+  });
               </code>
             </pre>
           </section>
@@ -104,16 +108,16 @@
             <h3>Object Oriented?</h3>
             <pre class="fragment fade-in">
               <code class="javascript" data-trim contenteditable>
-// new Person(firstName, lastName)
-oboe('/myapp/people')
-  .node('people.*', function(person){
-    return new Person(
-      person.firstName,
-      person.lastName
+// new Thing(color, shape)
+oboe('/myapp/things')
+  .node('things.*', function(thing){
+    return new Thing(
+      thing.color,
+      thing.shape
     );
   })
   .done(function(people){
-    people[0].sayName();
+    people[0].colorAndShape();
   })
               </code>
             </pre>
@@ -122,15 +126,15 @@ oboe('/myapp/people')
             <h3>Filtering?</h3>
             <pre class="fragment fade-in">
               <code class="javascript" data-trim contenteditable>
-var greenPeople = [];
-var bluePeople  = [];
+var greenThings = [];
+var blueThings  = [];
 
-oboe('/myapp/people')
-  .node('people.*', function(person){
-    if(person.color === 'blue'){
-      bluePeople.push(person);
+oboe('/myapp/things')
+  .node('things.*', function(thing){
+    if(thing.color === 'blue'){
+      blueThings.push(thing);
     } else {
-      greenPeople.push(person);
+      greenThings.push(thing);
     }
   })
               </code>
@@ -140,14 +144,15 @@ oboe('/myapp/people')
             <h3>Memory?</h3>
             <pre class="fragment fade-in">
               <code class="javascript" data-trim contenteditable>
-oboe('/myapp/people')
-  .node('{ firstName lastName }', function(person){
-    if(person.color === 'blue'){
+oboe('/myapp/thing')
+  .node('{ color shape }', function(thing){
+    if(thing.color === 'blue'){
       return this.drop;
     }
   })
   .done(function( finalJson){
-    console.log(finalJson); // {"people": [ , , greenPerson, ]}
+    console.log(finalJson);
+    // ^ {"things": [ , , greenThing, ]}
   })
               </code>
             </pre>
