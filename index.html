@@ -51,7 +51,29 @@
         </section>
 
         <section>
-          <h2>Who am I</h2>
+          <h2>Who am I?</h2>
+          <div>
+            <div style="display:inline-block">
+              <img style="width:400px" src="images/juan-caicedo.jpg"></img>
+            </div>
+            <div style="display:inline-block">
+              <div>
+                <img src="images/fluencia.png" style="width:300px"></img>
+              </div>
+              <div>
+                <img src="images/spanishdict.png" style="width:300px"></img>
+              </div>
+              <div>
+                <a href="https://github.com/JuanCaicedo">https://github.com/JuanCaicedo</a>
+              </div>
+              <div>
+                <a href="http://engineering.fluencia.com/">Fluencia engineering blog</a>
+              </div>
+              <div>
+                <a href="https://twitter.com/_juancaicedo">@_juancaicedo</a>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
@@ -62,12 +84,12 @@
         </section>
 
         <section>
-          <div id="oboe-title-div">
-            <img id="oboe-logo" style="width:150px" src="images/oboejs.png"></img>
-            <h1 id="oboe-title-header">Oboe.js</h1>
-          </div>
-        </section>
-        <section>
+          <section>
+            <div id="oboe-title-div">
+              <img id="oboe-logo" style="width:150px" src="images/oboejs.png"></img>
+              <h1 id="oboe-title-header">Oboe.js</h1>
+            </div>
+          </section>
           <section>
             <h3>It's this simple</h3>
             <pre >
@@ -77,11 +99,11 @@
           </section>
           <section>
             <h3>Interact on the fly!</h3>
-            <div id="oop-container" class="fragment fade-in" data-fragment-index="1">
-              <div class="fragment fade-out" data-fragment-index="3">
-                <h3>Object Oriented?</h3>
-                <pre class="fragment fade-in" data-fragment-index="2">
-                  <code class="javascript" data-trim contenteditable>
+          </section>
+          <section>
+            <h3>Object Oriented?</h3>
+            <pre class="fragment fade-in">
+              <code class="javascript" data-trim contenteditable>
 oboe('/myapp/people')
   .node('people.*', function(person){
     return new Person(
@@ -92,15 +114,13 @@ oboe('/myapp/people')
   .done(function(people){
     // OOP people!
   })
-                  </code>
-                </pre>
-              </div>
-            </div>
-            <div id="filtering-container" class="fragment fade-in" data-fragment-index="4">
-              <div class="fragment fade-out" data-fragment-index="6">
-                <h3>Filtering?</h3>
-                  <pre class="fragment" data-fragment-index="5">
-                    <code class="javascript" data-trim contenteditable>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Filtering?</h3>
+            <pre class="fragment fade-in">
+              <code class="javascript" data-trim contenteditable>
 var onlyPeople = [];
 
 oboe('/myapp/people')
@@ -112,15 +132,13 @@ oboe('/myapp/people')
   .done(function(){
     console.log(onlyPeople) // no R.R :(
   })
-                    </code>
-                  </pre>
-              </div>
-            </div>
-            <div id="memory-container" class="fragment fade-in" data-fragment-index="7">
-              <div class="fragment fade-out" data-fragment-index="9">
-                <h3>Memory?</h3>
-                  <pre class="fragment" data-fragment-index="8">
-                    <code class="javascript" data-trim contenteditable>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Memory?</h3>
+            <pre class="fragment fade-in">
+              <code class="javascript" data-trim contenteditable>
 oboe('/myapp/people')
   .node('{ firstName lastName }', function(person){
     // write to the DOM
@@ -129,16 +147,12 @@ oboe('/myapp/people')
   .done(function( finalJson){
     console.log(finalJson); // {"people": []}
   })
-                    </code>
-                  </pre>
-              </div>
-            </div>
+              </code>
+            </pre>
           </section>
           <section>
             <h3>Let's you fail gracefully!</h3>
           </section>
-        </section>
-        <section>
           <section>
             <h3>On the server</h3>
             <pre class="fragment">
@@ -199,11 +213,11 @@ oboe(process.stdin)
         <section>
           <h3>Resources</h3>
           <ul>
-            <li>Oboe.js on github: </li>
-            <li>Oboe.js docs: </li>
+            <li>Oboe.js on github: <a href="https://github.com/jimhigson/oboe.js">https://github.com/jimhigson/oboe.js</a></li>
+            <li>Oboe.js docs: <a href="http://oboejs.com/">http://oboejs.com/</a></li>
             <li>These slides: </li>
             <li>My Demo: </li>
-            <li>Tweet me questions: </li>
+            <li>Tweet me questions: <a href="https://twitter.com/_juancaicedo">@_juancaicedo</a></li>
           </ul>
         </section>
       </div>
