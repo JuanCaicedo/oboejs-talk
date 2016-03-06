@@ -9,7 +9,7 @@
   },
   "author": "Juan Caicedo",
   "repository": {
-    "type": "git",
+    "type": "git"
   },
   "engines": {
     "node": "~4.1.1"
