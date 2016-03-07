@@ -87,27 +87,324 @@
             <ul>
               <li class="fragment">Multiple data sources</li>
               <li class="fragment">Huge response</li>
+            </ul>
           </section>
           <section>
             <h3>Bad client connection</h3>
           </section>
-       </section>
-       <section>
-         <h3>Difficulties</h3>
-         <ul>
+        </section>
+        <section>
+          <h3>Difficulties</h3>
+          <ul>
             <li class="fragment" > Slow server response </li>
             <li class="fragment" > Coupled responses </li>
             <li class="fragment" > Big AJAX slow and brittle </li>
             <li class="fragment" > Multiple AJAX = complexity </li>
           </ul>
-       </section>
-       <div class="footer">
-          <a href="https://twitter.com/_juancaicedo">@_juancaicedo</p>
-        </div>
+        </section>
+        <section>
+          <h2>Our game plan</h2>
+          <ul>
+            <li class="fragment" > One request </li>
+            <li class="fragment" > Stream server -> client </li>
+            <li class="fragment" > One stream for all data </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Toolkit</h2>
+          <ul>
+            <li class="fragment" > Oboe.js </li>
+            <li class="fragment" > Highland.js </li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h2>Step 1</h2>
+            <h3>Receiving a stream response</h3>
+          </section>
+          <section>
+            <h3>Make a the call</h3>
+            <pre>
+              <code class="javascript" data-trim>
+oboe('http://localhost:3000/data')
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Parse out each point</h3>
+            <pre>
+              <code class="javascript" data-trim>
+  .node('{x y color}', function(point) {
+    // code using point
+  })
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Use each point</h3>
+            <pre>
+              <code class="javascript" data-trim>
+var grid = document.querySelector('.grid');
+var cell = getCell(grid, point.x, point.y);
+cell.classList.add(point.color);
+              </code>
+            </pre>
+          </section>
+        </section>
+          <section>
+            <section>
+              <h2>Step 2</h2>
+              <h3>Sending a streamed response</h3>
+            </section>
+            <section>
+              <h3>Make a simple express route</h3>
+              <pre>
+                <code class="javascript" data-trim>
+router.get('/data', function(req, res) {
+
+});
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Template response</h3>
+              <pre>
+                <code class="javascript" data-trim>
+var response = {
+  meta: 'metadata',
+  pixif: {
+    pixels: ["#{pixels}"]
+  },
+  end: 'test'
+};
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Stringify the response</h3>
+              <pre>
+                <code class="javascript" data-trim>
+var json = JSON.stringify(response);
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Split at placeholder</h3>
+              <pre>
+                <code class="javascript" data-trim>
+var parts = json.split('"#{pixels}"');
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>New stream from parts</h3>
+              <pre>
+                <code class="javascript" data-trim>
+highland([
+  parts[0], // before placeholder
+  parts[1]  // after placeholder
+])
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Convert to characters</h3>
+              <pre>
+                <code class="javascript" data-trim>
+  .invoke('split', [''])
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Preserve order</h3>
+              <pre>
+                <code class="javascript" data-trim>
+  .sequence()
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Hand off to response</h3>
+              <pre>
+                <code class="javascript" data-trim>
+  .pipe(res)
+                </code>
+              </pre>
+            </section>
+          </section>
+          <section>
+            <section>
+              <h2>Step 3</h2>
+              <h3>Add static data to response</h3>
+            </section>
+            <section>
+              <h3>Hard coded points</h3>
+              <pre>
+                <code class="javascript" data-trim>
+var points = [{
+    x: 1,
+    y: 2,
+    color: 'orange'
+  }, {
+    x: 2,
+    y: 2,
+    color: 'orange'
+  }];
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>New point stream</h3>
+              <pre>
+                <code class="javascript" data-trim>
+var pointsStream = highland(points)
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Stringify points</h3>
+              <pre>
+                <code class="javascript" data-trim>
+  .map(JSON.stringify)
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Comma separated</h3>
+              <pre>
+                <code class="javascript" data-trim>
+  .intersperse(',');
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Add to main stream</h3>
+              <pre>
+                <code class="javascript" data-trim>
+highland([
+    parts[0],
+    pointStream, //NEW!
+    parts[1]
+  ])
+  .invoke('split', [''])
+  .sequence()
+  .pipe(res);
+                </code>
+              </pre>
+            </section>
+          </section>
+          <section>
+            <section>
+              <h2>Step 4</h2>
+              <h3>Data in another module</h3>
+            </section>
+            <section>
+              <h3>Extract code</h3>
+              <pre>
+                <code class="javascript" data-trim>
+var points = require('../data/points');
+
+/* inside the /data route */
+var pointStream = points.getDataStream()
+                </code>
+              </pre>
+            </section>
+          </section>
+          <section>
+            <section>
+              <h2>Step 5</h2>
+              <h3>Cat points from another file</h3>
+            </section>
+            <section>
+              <h3>Implement getDataStream</h3>
+              <pre>
+                <code class="javascript" data-trim>
+function getDataStream() {
+  var catPath = path.resolve(__dirname, './cat-points.json');
+  var catSource = fs.createReadStream(catPath);
+  var catStream = getPointStream(catSource);
+
+  return catStream;
+}
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Implement getPointStream</h3>
+              <pre>
+                <code class="javascript" data-trim>
+function getPointStream(sourceStream) {
+  return highland(function(push) {
+    // define stream behavior
+  });
+}
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Push points to stream</h3>
+              <pre>
+                <code class="javascript" data-trim>
+oboe(sourceStream)
+  .node('{x y color}', function(point) {
+    push(null, point);
+  })
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Terminate stream</h3>
+              <pre>
+                <code class="javascript" data-trim>
+  .done(function() {
+    push(null, highland.nil);
+  });
+                </code>
+              </pre>
+            </section>
+          </section>
+          <section>
+            <section>
+              <h2>Step 6</h2>
+              <h3>Sun points over network<h3>
+            </section>
+            <section>
+              <h3>New source in getDataStream</h3>
+              <pre>
+                <code class="javascript" data-trim>
+function getDataStream() {
+  /* cat stream */
+
+  var sunUrl = 'urlFromGithub';
+  var sunSource = request(sunUrl);
+  var sunStream = getPointStream(sunSource);
+
+  /* return */
+}
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h3>Unify streams!</h3>
+              <pre>
+                <code class="javascript" data-trim>
+return highland([
+  catStream,
+  sunStream
+]).merge();
+                </code>
+              </pre>
+            </section>
+          </section>
+          <section>
+            <h2>All done!</h2>
+            <a href="http://oboe-highland.herokuapp.com/home">http://oboe-highland.herokuapp.com/home</a>
+          </section>
+          <div class="footer">
+            <a href="https://twitter.com/_juancaicedo">@_juancaicedo</a>
+          </div>
       </div>
-
     </div>
-
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
 
