@@ -123,34 +123,6 @@
             <h3>Receiving a stream response</h3>
           </section>
           <section>
-            <h3>Make a the call</h3>
-            <pre>
-              <code class="javascript" data-trim>
-oboe('http://localhost:3000/data')
-              </code>
-            </pre>
-          </section>
-          <section>
-            <h3>Parse out each point</h3>
-            <pre>
-              <code class="javascript" data-trim>
-  .node('{x y color}', function(point) {
-    // code using point
-  })
-              </code>
-            </pre>
-          </section>
-          <section>
-            <h3>Use each point</h3>
-            <pre>
-              <code class="javascript" data-trim>
-var grid = document.querySelector('.grid');
-var cell = getCell(grid, point.x, point.y);
-cell.classList.add(point.color);
-              </code>
-            </pre>
-          </section>
-          <section>
             <h3>Make a basic data route</h3>
             <pre>
               <code class="javascript" data-trim>
@@ -161,7 +133,7 @@ router.get('/data-step-1', function(req, res) {
             </pre>
           </section>
           <section>
-            <h3>Make a basic data route</h3>
+            <h3>Add static data</h3>
             <pre>
               <code class="javascript" data-trim>
 router.get('/data-step-1', function(req, res) {
@@ -180,6 +152,40 @@ router.get('/data-step-1', function(req, res) {
               </code>
             </pre>
           </section>
+          <section>
+            <h3>Ask for the data</h3>
+            <pre>
+              <code class="javascript" data-trim>
+oboe('http://localhost:3000/data-step-1')
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Parse out each point</h3>
+            <pre>
+              <code class="javascript" data-trim>
+oboe('http://localhost:3000/data-step-1')
+  .node('{x y color}', function(point) {
+    // code using point
+  })
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Use each point</h3>
+            <pre>
+              <code class="javascript" data-trim>
+oboe('http://localhost:3000/data-step-1')
+  .node('{x y color}', function(point) {
+
+    var grid = document.querySelector('.grid');
+    var cell = getCell(grid, point.x, point.y);
+    cell.classList.add(point.color);
+
+  });
+              </code>
+            </pre>
+          </section>
         </section>
         <section>
           <section>
@@ -187,18 +193,18 @@ router.get('/data-step-1', function(req, res) {
             <h3>Sending a streamed response</h3>
           </section>
           <section>
-            <h3>Stringify the response</h3>
+            <h3>Stringify the points</h3>
             <pre>
               <code class="javascript" data-trim>
 router.get('/data-step-2', function(req, res) {
   var points = //...
-  var json = JSON.stringify(response);
+  var json = JSON.stringify(points);
 });
               </code>
             </pre>
           </section>
           <section>
-            <h3>Stringify the response</h3>
+            <h3>Split into characters</h3>
             <pre>
               <code class="javascript" data-trim>
 router.get('/data-step-2', function(req, res) {
@@ -210,7 +216,7 @@ router.get('/data-step-2', function(req, res) {
             </pre>
           </section>
           <section>
-            <h3>Stringify the response</h3>
+            <h3>Pipe to the response</h3>
             <pre>
               <code class="javascript" data-trim>
 router.get('/data-step-2', function(req, res) {
@@ -224,39 +230,40 @@ router.get('/data-step-2', function(req, res) {
               </code>
             </pre>
           </section>
+        </section>
+        <section>
           <section>
-            <section>
-              <h2>Step 3</h2>
-              <h3>Points as a stream</h3>
-            </section>
-            <section>
-              <h3>Move to another module</h3>
-              <pre>
-                <code class="javascript" data-trim>
+            <h2>Step 3</h2>
+            <h3>Points as a stream</h3>
+          </section>
+          <section>
+            <h3>Move to another module</h3>
+            <pre>
+              <code class="javascript" data-trim>
 function getStaticPointStream() {
-  var points = [...];
+  var points = //...
   return highland(points);
 }
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Move to another module</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Move to another module</h3>
+            <pre>
+              <code class="javascript" data-trim>
 var points = require('./points');
 
 router.get('/data-step-3', function(req, res) {
   var pointsStream = points.getStaticPointStream();
   //...
 });
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Move to another module</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Stringify in route</h3>
+            <pre>
+              <code class="javascript" data-trim>
 var points = require('./points');
 
 router.get('/data-step-3', function(req, res) {
@@ -265,11 +272,13 @@ router.get('/data-step-3', function(req, res) {
 
   //...
 });
-            </section>
-            <section>
-              <h3>Move to another module</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Move to another module</h3>
+            <pre>
+              <code class="javascript" data-trim>
 var points = require('./points');
 
 router.get('/data-step-3', function(req, res) {
@@ -280,13 +289,13 @@ router.get('/data-step-3', function(req, res) {
     .invoke('split', [''])
     .pipe(res);
 });
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Move to another module</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Move to another module</h3>
+            <pre>
+              <code class="javascript" data-trim>
 var points = require('./points');
 
 router.get('/data-step-3', function(req, res) {
@@ -301,13 +310,13 @@ router.get('/data-step-3', function(req, res) {
     .invoke('split', [''])
     .pipe(res);
 });
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Move to another module</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Move to another module</h3>
+            <pre>
+              <code class="javascript" data-trim>
 var points = require('./points');
 
 router.get('/data-step-3', function(req, res) {
@@ -323,53 +332,53 @@ router.get('/data-step-3', function(req, res) {
     .invoke('split', [''])
     .pipe(res);
 });
-                </code>
-              </pre>
-            </section>
+              </code>
+            </pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Step 4</h2>
+            <h3>Merge two streams</h3>
           </section>
           <section>
-            <section>
-              <h2>Step 4</h2>
-              <h3>Merge two streams</h3>
-            </section>
-            <section>
-              <h3>Make a stream for each point</h3>
-              <pre>
-                <code class="javascript" data-trim>
+            <h3>Make a stream for each point</h3>
+            <pre>
+              <code class="javascript" data-trim>
 function getStaticMergedStream(){
 
-  var stream1 = highland([//point1]);
-  var stream2 = highland([//point2]);
+  var stream1 = highland([/*point1*/]);
+  var stream2 = highland([/*point2*/]);
 
 }
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Make a stream for each point</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Make a stream for each point</h3>
+            <pre>
+              <code class="javascript" data-trim>
 function getStaticMergedStream(){
 
-  var stream1 = highland([//point1]);
-  var stream2 = highland([//point2]);
+  var stream1 = highland([/*point1*/]);
+  var stream2 = highland([/*point2*/]);
 
   return highland([
       stream1,
       stream2
     ]);
 }
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Make a stream for each point</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Make a stream for each point</h3>
+            <pre>
+              <code class="javascript" data-trim>
 function getStaticMergedStream(){
 
-  var stream1 = highland([//point1]);
-  var stream2 = highland([//point2]);
+  var stream1 = highland([/*point1*/]);
+  var stream2 = highland([/*point2*/]);
 
   return highland([
       stream1,
@@ -377,26 +386,26 @@ function getStaticMergedStream(){
     ])
     .merge();
 }
-                </code>
-              </pre>
-            </section>
+              </code>
+            </pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Step 5</h2>
+            <h3>Cat points from another file</h3>
           </section>
           <section>
-            <section>
-              <h2>Step 5</h2>
-              <h3>Cat points from another file</h3>
-            </section>
-            <section>
-              <h3>Replace stream1 with cat</h3>
-              <pre>
-                <code class="javascript" data-trim>
+            <h3>Replace stream1 with cat</h3>
+            <pre>
+              <code class="javascript" data-trim>
 function getStreamWithCat(){
 
   var catPath = path.resolve(__dirname, './cat-points.json');
   var catSource = fs.createReadStream(catPath);
   var catStream = getPointStream(catSource);
 
-  var stream2 = highland([//point2]);
+  var stream2 = highland([/*point2*/]);
 
   return highland([
       stream1,
@@ -404,13 +413,13 @@ function getStreamWithCat(){
     ])
     .merge();
 }
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Implement getPointStream</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Implement getPointStream</h3>
+            <pre>
+              <code class="javascript" data-trim>
 function getPointStream(sourceStream) {
 
   return highland(function(push) {
@@ -418,90 +427,32 @@ function getPointStream(sourceStream) {
   });
 
 }
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Push points to stream</h3>
-              <pre>
-                <code class="javascript" data-trim>
-function getPointStream(sourceStream) {
-
-  return highland(function(push) {
-
-    oboe(sourceStream)
-      .node('{x y color}', function(point) {
-        push(null, point);
-      })
-
-  });
-
-}
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Terminate stream</h3>
-              <pre>
-                <code class="javascript" data-trim>
-function getPointStream(sourceStream) {
-
-  return highland(function(push) {
-
-    oboe(sourceStream)
-      .node('{x y color}', function(point) {
-        push(null, point);
-      })
-      .done(function() {
-        push(null, highland.nil);
-      });
-
-  });
-
-}
-                </code>
-              </pre>
-            </section>
+              </code>
+            </pre>
           </section>
           <section>
-            <section>
-              <h2>Step 6</h2>
-              <h3>Sun points over network<h3>
-            </section>
-            <section>
-              <h3>New source in getDataStream</h3>
-              <pre>
-                <code class="javascript" data-trim>
-function getDataStream() {
-  /* cat stream */
+            <h3>Push points to stream</h3>
+            <pre>
+              <code class="javascript" data-trim>
+function getPointStream(sourceStream) {
 
-  var stream2 = highland([//point2]);
+  return highland(function(push) {
 
-  /* return */
+    oboe(sourceStream)
+      .node('{x y color}', function(point) {
+        push(null, point);
+      })
+
+  });
+
 }
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>New source in getDataStream</h3>
-              <pre>
-                <code class="javascript" data-trim>
-function getDataStream() {
-  /* cat stream */
-
-  var sunUrl = 'urlFromGithub';
-  var sunSource = request(sunUrl);
-  var sunStream = getPointStream(sunSource);
-
-  /* return */
-}
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>This will work because</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Terminate stream</h3>
+            <pre>
+              <code class="javascript" data-trim>
 function getPointStream(sourceStream) {
 
   return highland(function(push) {
@@ -517,21 +468,86 @@ function getPointStream(sourceStream) {
   });
 
 }
-                </code>
-              </pre>
-            </section>
-            <section>
-              <h3>Unify streams!</h3>
-              <pre>
-                <code class="javascript" data-trim>
+              </code>
+            </pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Step 6</h2>
+            <h3>Sun points over network</h3>
+          </section>
+          <section>
+            <h3>New source in getDataStream</h3>
+            <pre>
+              <code class="javascript" data-trim>
 function getDataStream() {
-  /* cat stream */
+
+  var catPath = path.resolve(__dirname, './cat-points.json');
+  var catSource = fs.createReadStream(catPath);
+  var catStream = getPointStream(catSource);
+
+  var stream2 = highland([/*point2*/]);
+
+  /* return */
+}
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>New source in getDataStream</h3>
+            <pre>
+              <code class="javascript" data-trim>
+function getDataStream() {
+
+  var catPath = path.resolve(__dirname, './cat-points.json');
+  var catSource = fs.createReadStream(catPath);
+  var catStream = getPointStream(catSource);
 
   var sunUrl = 'urlFromGithub';
   var sunSource = request(sunUrl);
   var sunStream = getPointStream(sunSource);
 
   /* return */
+}
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>This will work because</h3>
+            <pre>
+              <code class="javascript" data-trim>
+function getPointStream(sourceStream) {
+
+  return highland(function(push) {
+
+    oboe(sourceStream)
+      .node('{x y color}', function(point) {
+        push(null, point);
+      })
+      .done(function() {
+        push(null, highland.nil);
+      });
+
+  });
+
+}
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Unify streams!</h3>
+            <pre>
+              <code class="javascript" data-trim>
+function getDataStream() {
+
+  var catPath = path.resolve(__dirname, './cat-points.json');
+  var catSource = fs.createReadStream(catPath);
+  var catStream = getPointStream(catSource);
+
+  var sunUrl = 'urlFromGithub';
+  var sunSource = request(sunUrl);
+  var sunStream = getPointStream(sunSource);
 
   return highland([
     catStream,
