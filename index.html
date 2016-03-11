@@ -52,14 +52,21 @@
             </div>
             <div style="display:inline-block">
               <div>
+                <img src="images/fluencia.png" style="width:300px"></img>
+              </div>
+              <div>
                 <img src="images/spanishdict.png" style="width:300px"></img>
               </div>
               <div>
-                <a href="https://github.com/JuanCaicedo">https://github.com/JuanCaicedo</a>
+                <a href="https://github.com/JuanCaicedo">github.com/JuanCaicedo</a>
               </div>
               <div>
-                <a href="http://www.meetup.com/node-dc/">http://www.meetup.com/node-dc</a>
+                <a href="http://www.meetup.com/node-dc/">meetup.com/node-dc</a>
               </div>
+              <div>
+                <a href="http://nodeschool.io/washingtondc/">nodeschool.io/washingtondc</a>
+              </div>
+              <br/>
             </div>
           </div>
         </section>
@@ -74,10 +81,17 @@
             <pre>
               <code class="html" data-trim>
 &lt;div class="grid"&gt;
+
   &lt;div class="row"&gt;
+
     &lt;div class="cell"&gt;
+
     &lt;/div&gt;
+
   &lt;/div&gt;
+
+  ...
+
 &lt;/div&gt;
               </code>
             </pre>
@@ -431,7 +445,7 @@ function getStreamWithCat(){
 
   var catPath = path.resolve(__dirname, './cat-points.json');
   var catSource = fs.createReadStream(catPath);
-  var catStream = getPointStream(catSource);
+  var catStream = convertToPointStream(catSource);
 
   var stream2 = highland([/*point2*/]);
 
@@ -445,11 +459,11 @@ function getStreamWithCat(){
             </pre>
           </section>
           <section>
-            <h3>Implement getPointStream</h3>
+            <h3>Implement convertToPointStream</h3>
             <pre>
               <code class="javascript" data-trim>
 /* points-module */
-function getPointStream(sourceStream) {
+function convertToPointStream(sourceStream) {
 
   return highland(function(push) {
     // define stream behavior
@@ -464,7 +478,7 @@ function getPointStream(sourceStream) {
             <pre>
               <code class="javascript" data-trim>
 /* points-module */
-function getPointStream(sourceStream) {
+function convertToPointStream(sourceStream) {
 
   return highland(function(push) {
 
@@ -484,7 +498,7 @@ function getPointStream(sourceStream) {
             <pre>
               <code class="javascript" data-trim>
 /* points-module */
-function getPointStream(sourceStream) {
+function convertToPointStream(sourceStream) {
 
   return highland(function(push) {
 
@@ -517,7 +531,7 @@ function getDataStream() {
 
   var catPath = path.resolve(__dirname, './cat-points.json');
   var catSource = fs.createReadStream(catPath);
-  var catStream = getPointStream(catSource);
+  var catStream = convertToPointStream(catSource);
 
   var stream2 = highland([/*point2*/]);
 
@@ -535,11 +549,11 @@ function getDataStream() {
 
   var catPath = path.resolve(__dirname, './cat-points.json');
   var catSource = fs.createReadStream(catPath);
-  var catStream = getPointStream(catSource);
+  var catStream = convertToPointStream(catSource);
 
   var sunUrl = 'urlFromGithub';
   var sunSource = request(sunUrl);
-  var sunStream = getPointStream(sunSource);
+  var sunStream = convertToPointStream(sunSource);
 
   /* return */
 }
@@ -551,7 +565,7 @@ function getDataStream() {
             <pre>
               <code class="javascript" data-trim>
 /* points-module */
-function getPointStream(sourceStream) {
+function convertToPointStream(sourceStream) {
 
   return highland(function(push) {
 
@@ -578,11 +592,11 @@ function getDataStream() {
 
   var catPath = path.resolve(__dirname, './cat-points.json');
   var catSource = fs.createReadStream(catPath);
-  var catStream = getPointStream(catSource);
+  var catStream = convertToPointStream(catSource);
 
   var sunUrl = 'urlFromGithub';
   var sunSource = request(sunUrl);
-  var sunStream = getPointStream(sunSource);
+  var sunStream = convertToPointStream(sunSource);
 
   return highland([
     catStream,
