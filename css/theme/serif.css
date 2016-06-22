@@ -144,7 +144,7 @@ body {
   width: 90%;
   margin: 20px auto;
   text-align: left;
-  font-size: 1.00em;
+  font-size: 0.55em;
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
@@ -155,7 +155,7 @@ body {
 
 .reveal pre code {
   display: block;
-  padding: 15px;
+  padding: 5px;
   overflow: auto;
   max-height: 400px;
   word-wrap: normal; }
@@ -239,6 +239,7 @@ body {
   transition: all .15s linear; }
 
 .reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
   border-color: #51483D;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 

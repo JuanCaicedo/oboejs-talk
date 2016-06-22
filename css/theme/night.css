@@ -142,7 +142,7 @@ body {
   width: 90%;
   margin: 20px auto;
   text-align: left;
-  font-size: 1.00em;
+  font-size: 0.55em;
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
@@ -153,7 +153,7 @@ body {
 
 .reveal pre code {
   display: block;
-  padding: 15px;
+  padding: 5px;
   overflow: auto;
   max-height: 400px;
   word-wrap: normal; }
@@ -203,20 +203,20 @@ body {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #00b8ff;
+  color: #e7ad52;
   text-decoration: none;
   -webkit-transition: color .15s ease;
   -moz-transition: color .15s ease;
   transition: color .15s ease; }
 
 .reveal a:hover {
-  color: #66d4ff;
+  color: #f3d7ac;
   text-shadow: none;
   border: none; }
 
 .reveal .roll span:after {
   color: #fff;
-  background: #0081b3; }
+  background: #d08a1d; }
 
 /*********************************************
  * IMAGES
@@ -237,7 +237,8 @@ body {
   transition: all .15s linear; }
 
 .reveal a:hover img {
-  border-color: #00b8ff;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #e7ad52;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
 /*********************************************
@@ -245,31 +246,31 @@ body {
  *********************************************/
 .reveal .controls .navigate-left,
 .reveal .controls .navigate-left.enabled {
-  border-right-color: #00b8ff; }
+  border-right-color: #e7ad52; }
 
 .reveal .controls .navigate-right,
 .reveal .controls .navigate-right.enabled {
-  border-left-color: #00b8ff; }
+  border-left-color: #e7ad52; }
 
 .reveal .controls .navigate-up,
 .reveal .controls .navigate-up.enabled {
-  border-bottom-color: #00b8ff; }
+  border-bottom-color: #e7ad52; }
 
 .reveal .controls .navigate-down,
 .reveal .controls .navigate-down.enabled {
-  border-top-color: #00b8ff; }
+  border-top-color: #e7ad52; }
 
 .reveal .controls .navigate-left.enabled:hover {
-  border-right-color: #66d4ff; }
+  border-right-color: #f3d7ac; }
 
 .reveal .controls .navigate-right.enabled:hover {
-  border-left-color: #66d4ff; }
+  border-left-color: #f3d7ac; }
 
 .reveal .controls .navigate-up.enabled:hover {
-  border-bottom-color: #66d4ff; }
+  border-bottom-color: #f3d7ac; }
 
 .reveal .controls .navigate-down.enabled:hover {
-  border-top-color: #66d4ff; }
+  border-top-color: #f3d7ac; }
 
 /*********************************************
  * PROGRESS BAR
@@ -278,45 +279,7 @@ body {
   background: rgba(0, 0, 0, 0.2); }
 
 .reveal .progress span {
-  background: #00b8ff;
+  background: #e7ad52;
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
-
-#oboe-title-header {
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: auto;
-  margin-bottom: auto; }
-
-#oboe-title-text {
-  display: inline-block;
-  vertical-align: middle; }
-
-#oboe-logo {
-  display: inline-block;
-  vertical-align: middle; }
-
-#filtering-container {
-  -webkit-transform: translateY(-97%);
-  /* for Safari and iOS */
-  -ms-transform: translateY(-97%);
-  /* for IE9 */
-  transform: translateY(-97%); }
-
-#memory-container {
-  -webkit-transform: translateY(-243%);
-  /* for Safari and iOS */
-  -ms-transform: translateY(-243%);
-  /* for IE9 */
-  transform: translateY(-243%); }
-
-#bash-command {
-  font-size: 0.75em; }
-
-#cat-image {
-  -webkit-transform: translatex(23%);
-  /* for Safari and iOS */
-  -ms-transform: translatex(23%);
-  /* for IE9 */
-  transform: translatex(23%); }

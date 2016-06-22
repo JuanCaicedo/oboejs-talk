@@ -20,7 +20,7 @@
 $backgroundColor: #111;
 
 $mainFont: 'Open Sans', sans-serif;
-$linkColor: #00b8ff;
+$linkColor: #e7ad52;
 $linkColorHover: lighten( $linkColor, 20% );
 $headingFont: 'Montserrat', Impact, sans-serif;
 $headingTextShadow: none;
@@ -33,48 +33,3 @@ $mainFontSize: 30px;
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
-
-#oboe-title-header {
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-#oboe-title-text {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-#oboe-logo {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-#filtering-container {
-  -webkit-transform: translateY(-97%);
-  /* for Safari and iOS */
-  -ms-transform: translateY(-97%);
-  /* for IE9 */
-  transform: translateY(-97%);
-}
-
-#memory-container {
-  -webkit-transform: translateY(-243%);
-  /* for Safari and iOS */
-  -ms-transform: translateY(-243%);
-  /* for IE9 */
-  transform: translateY(-243%);
-}
-
-#bash-command {
-  font-size: 0.75em;
-}
-
-#cat-image {
-  -webkit-transform: translatex(23%);
-  /* for Safari and iOS */
-  -ms-transform: translatex(23%);
-  /* for IE9 */
-  transform: translatex(23%);
-}
