@@ -6,16 +6,17 @@
 
     <title>Oboe.js, better JSON through streams</title>
 
-    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-    <meta name="author" content="Hakim El Hattab">
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="">
+    <meta name="author" content="Juan Caicedo">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/theme/juan.css" id="theme">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -40,6 +41,7 @@
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
+
         <section data-markdown>
           # Oboe.js
           ### Better JSON through streams
@@ -54,7 +56,7 @@
           <h2>Who am I?</h2>
           <div>
             <div style="display:inline-block">
-              <img style="width:400px" src="images/juan-caicedo.jpg"></img>
+              <img class="image" style="width:400px" src="images/juan-caicedo.jpg"></img>
             </div>
             <div style="display:inline-block">
               <div>
@@ -64,11 +66,15 @@
                 <img src="images/spanishdict.png" style="width:300px"></img>
               </div>
               <div>
-                <a href="https://github.com/JuanCaicedo">https://github.com/JuanCaicedo</a>
+                <a href="https://github.com/JuanCaicedo">github.com/JuanCaicedo</a>
               </div>
               <div>
-                <a href="https://twitter.com/_juancaicedo">@_juancaicedo</a>
+                <a href="http://www.meetup.com/node-dc/">meetup.com/node-dc</a>
               </div>
+              <div>
+                <a href="http://nodeschool.io/washingtondc/">nodeschool.io/washingtondc</a>
+              </div>
+              <br/>
             </div>
           </div>
         </section>
@@ -227,10 +233,13 @@ oboe(process.stdin)
             <li>Tweet me questions: <a href="https://twitter.com/_juancaicedo">@_juancaicedo</a></li>
           </ul>
         </section>
+
+        <div class="footer">
+          <a href="https://twitter.com/_juancaicedo">@_juancaicedo</a>
+        </div>
+
       </div>
-
     </div>
-
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
 
@@ -248,12 +257,10 @@ oboe(process.stdin)
 
         // Optional reveal.js plugins
         dependencies: [
-          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugin/zoom-js/zoom.js', async: true },
-          { src: 'plugin/notes/notes.js', async: true }
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ]
       });
 
